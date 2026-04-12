@@ -12,4 +12,4 @@ Reference the Creating an Entity Relationship Diagram final project guide in the
 ## Add the Entity Relationship Diagram
 The Entity Relationship Diagram for the application is below:
 
-![ERD Image](erd_image.png)
+![ERD Image](images/erd_image.png)
