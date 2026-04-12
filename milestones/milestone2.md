@@ -12,7 +12,7 @@ This unit, be sure to complete all tasks listed below. To complete a task, place
   - [x] Your entity relationship diagram should include the tables in your database.
 - [x] Prepare your three-minute pitch presentation, to be presented during Unit 7 (the next unit).
   - [x] You do **not** need to submit any materials in advance of your pitch.
-- [ ] In this document, complete all three questions in the **Reflection** section below
+- [x] In this document, complete all three questions in the **Reflection** section below
 
 ## Reflection
 
@@ -20,9 +20,7 @@ This unit, be sure to complete all tasks listed below. To complete a task, place
 Creating the entity relationship diagram and recording which tables will be in the project database was relatively straightforward - the detail I wrote in the first milestone helped me visualize the relationships and tables relatively quickly in this milestone.
 
 ### 2. What were some challenges your group faced in this unit?
-
-[👉🏾👉🏾👉🏾 your answer here]
+I'm not very visually creative, so it was difficult creating the wireframes and settling on an appealing theme for the website. I used Figma to help me brainstorm some ideas, and that was helpful.
 
 ### 3. What additional support will you need in upcoming units as you continue to work on your final project?
-
-[👉🏾👉🏾👉🏾 your answer here]
+I would love some UI/UX feedback as I keep working towards the final project. Hopefully I can get feedback from other groups (since I'm working solo for this project) during class and on Slack.
