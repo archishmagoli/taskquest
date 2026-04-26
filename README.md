@@ -24,43 +24,43 @@ I always have a hard time keeping track of tasks for school and work. Most to-do
 
 ## Features
 
-### Task Management
+### Task Management ✅
 
 Users can create, view, edit, and delete tasks. Each task has a title, description, due date, category, and completion status — giving full control over what needs to get done.
 
 [gif goes here]
 
-### Points Reward System
+### Points Reward System ✅
 
 Every time a user marks a task as complete, they automatically earn points. Points are tracked on the user's profile and serve as the in-app currency for unlocking avatars.
 
 [gif goes here]
 
-### Avatar Shop
+### Avatar Shop ✅
 
 Users can browse a collection of avatars and spend their earned points to unlock them. Locked avatars display their point cost, and unlocked avatars can be equipped to the user's profile.
 
 [gif goes here]
 
-### User Profile
+### User Profile ✅
 
 A dedicated profile page displays the user's current avatar, total points earned, number of tasks completed, and all avatars they have unlocked so far.
 
-![GIF showing user profile in TaskQuest application.](https://i.imgur.com/kwO0FPR.gif)
+![GIF showing user profile.](./recordings/user_profile.gif)
 
-### Task Categories
+### Task Categories ✅
 
 Tasks can be assigned to a category (e.g., School, Work, Personal, Health). Categories help users organize their workload and provide a visual way to group related tasks.
 
-[gif goes here]
+[GIF showing task created under new created category.](./recordings/task_category.gif)
 
-### Task Filtering and Sorting
+### Task Filtering and Sorting ✅
 
 Users can filter their task list by category or completion status, and sort by due date or creation date. This makes it easy to focus on what matters most at any given time.
 
 [gif goes here]
 
-### Database Reset
+### Database Reset ✅
 
 Users can reset the app's database back to its default state, restoring the original set of tasks, avatars, and user data for a fresh start.
 
