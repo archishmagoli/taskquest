@@ -60,14 +60,15 @@ export default function HomePage({ onTaskUpdate }: HomePageProps) {
     if (!newTitle.trim()) return
     setSubmitting(true)
     try {
-      const task = await createTask({
+      await createTask({
         title: newTitle,
         description: newDescription || undefined,
         due_date: newDueDate || undefined,
         point_value: newPoints,
         category_id: newCategoryId,
       })
-      setTasks(prev => [task, ...prev])
+      const updated = await getTasks({ category_id: filterCategory, is_completed: filterCompleted, sort })
+      setTasks(updated)
       setDialogOpen(false)
       setNewTitle(''); setNewDescription(''); setNewDueDate(''); setNewPoints(10); setNewCategoryId(undefined)
     } catch {

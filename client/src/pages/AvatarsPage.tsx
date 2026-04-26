@@ -72,7 +72,13 @@ export default function AvatarsPage({ onAvatarUpdate }: AvatarsPageProps) {
         {avatars.map(avatar => (
           <div
             key={avatar.id}
-            className={`border-2 p-4 rounded-lg shadow-md flex flex-col ${avatar.is_unlocked ? 'bg-white border-purple-300' : 'bg-gray-100 border-gray-400 opacity-70'}`}
+            className={`border-2 p-4 rounded-lg shadow-md flex flex-col ${
+  avatar.is_unlocked
+    ? 'bg-white border-purple-300'
+    : (user?.points ?? 0) >= avatar.point_cost
+      ? 'bg-white border-purple-200'
+      : 'bg-gray-100 border-gray-400 opacity-60'
+}`}
           >
             <div className="relative w-full aspect-square mb-3 rounded-lg overflow-hidden bg-purple-50 border-2 border-purple-200 flex items-center justify-center">
               <img src={avatar.image_url} alt={avatar.name} className={`w-20 h-20 ${!avatar.is_unlocked ? 'grayscale' : ''}`} />
@@ -103,9 +109,13 @@ export default function AvatarsPage({ onAvatarUpdate }: AvatarsPageProps) {
               <button
                 onClick={() => handleUnlock(avatar)}
                 disabled={(user?.points ?? 0) < avatar.point_cost}
-                className="w-full py-2 bg-gray-400 text-white font-bold rounded border-2 border-gray-500 hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className={`w-full py-2 font-bold rounded border-2 transition-colors ${
+                  (user?.points ?? 0) >= avatar.point_cost
+                    ? 'bg-purple-500 text-white border-purple-600 hover:bg-purple-600 cursor-pointer'
+                    : 'bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed'
+                }`}
               >
-                {avatar.point_cost} pts
+                {(user?.points ?? 0) >= avatar.point_cost ? `Unlock — ${avatar.point_cost} pts` : `${avatar.point_cost} pts`}
               </button>
             )}
           </div>
