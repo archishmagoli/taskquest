@@ -2,28 +2,26 @@ const express = require('express')
 const router = express.Router()
 const passport = require('../config/passport')
 const pool = require('../config/database')
+const jwt = require('jsonwebtoken')
 
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173'
+const JWT_SECRET = process.env.SESSION_SECRET || 'dev_secret'
 
-router.get('/github', passport.authenticate('github', { scope: ['user:email'] }))
+router.get('/github', passport.authenticate('github', { scope: ['user:email'], session: false }))
 
 router.get('/github/callback',
-  passport.authenticate('github', { failureRedirect: `${CLIENT_URL}/login` }),
+  passport.authenticate('github', { session: false, failureRedirect: `${CLIENT_URL}/login` }),
   (req, res) => {
-    req.session.save(err => {
-      if (err) {
-        console.error('Session save error:', err)
-        return res.redirect(`${CLIENT_URL}/login`)
-      }
-      console.log('Session saved, user:', req.user?.id)
-      res.redirect(CLIENT_URL)
-    })
+    const token = jwt.sign({ userId: req.user.id }, JWT_SECRET, { expiresIn: '7d' })
+    res.redirect(`${CLIENT_URL}?token=${token}`)
   }
 )
 
 router.get('/me', async (req, res) => {
-  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not authenticated' })
+  const auth = req.headers.authorization
+  if (!auth?.startsWith('Bearer ')) return res.status(401).json({ error: 'Not authenticated' })
   try {
+    const { userId } = jwt.verify(auth.slice(7), JWT_SECRET)
     const { rows } = await pool.query(
       `SELECT users.*, avatars.name AS avatar_name, avatars.image_url AS avatar_image,
               COUNT(tasks.id) FILTER (WHERE tasks.is_completed = TRUE) AS tasks_completed
@@ -33,19 +31,16 @@ router.get('/me', async (req, res) => {
        LEFT JOIN tasks ON users.id = tasks.user_id
        WHERE users.id = $1
        GROUP BY users.id, avatars.name, avatars.image_url`,
-      [req.user.id]
+      [userId]
     )
     res.json(rows[0])
-  } catch (err) {
-    res.status(500).json({ error: err.message })
+  } catch {
+    res.status(401).json({ error: 'Invalid token' })
   }
 })
 
-router.post('/logout', (req, res, next) => {
-  req.logout(err => {
-    if (err) return next(err)
-    res.json({ message: 'Logged out' })
-  })
+router.post('/logout', (req, res) => {
+  res.json({ message: 'Logged out' })
 })
 
 module.exports = router
