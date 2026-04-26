@@ -86,20 +86,20 @@ Complete the checklist below detailing each baseline, custom, and stretch featur
 
 ### 1. What went well during this unit?
 
-[👉🏾👉🏾👉🏾 your answer here]
+I was able to complete all features for my project and finish all milestone tasks.
 
 ### 2. What were some challenges your group faced in this unit?
 
-[👉🏾👉🏾👉🏾 your answer here]
+It was difficult to get all the features done as a solo developer on my team, but I am proud of my work and the fact I was able to get everything done on time.
 
 ### 3. What were some of the highlights or achievements that you are most proud of in this project?
 
-[👉🏾👉🏾👉🏾 your answer here]
+I am proud to have added some stretch goals in my project, such as button disabling and login via GitHub OAuth! Initially I planned to use Google OAuth, but after having learned about GitHub OAuth in class, I felt it was a better fit for my application.
 
 ### 4. Reflecting on your web development journey so far, how have you grown since the beginning of the course?
 
-[👉🏾👉🏾👉🏾 your answer here]
+I've learned an incredible amount in this course, and I will take away so many learnings about storing data, keeping things secure, and using authentication to take my projects to the next level!
 
 ### 5. Looking ahead, what are your goals related to web development, and what steps do you plan to take to achieve them?
 
-[👉🏾👉🏾👉🏾 your answer here]
+I hope to continue developing my full-stack development skills throughout my career, and I plan to do so as an engineer in my new full-time SWE role and beyond.

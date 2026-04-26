@@ -15,20 +15,20 @@ This unit, be sure to complete all tasks listed below. To complete a task, place
 
 ### 1. What went well during this unit?
 
-[👉🏾👉🏾👉🏾 your answer here]
+I was able to get most of my application functionality done during this unit.
 
 ### 2. What were some challenges your group faced in this unit?
 
-[👉🏾👉🏾👉🏾 your answer here]
+I didn't realize just how big of a scope I had set for this project, especially working by myself, which posed a challenge when trying to balance this project with other assignments in school.
 
 ### Did you finish all of your tasks in your sprint plan for this week? If you did not finish all of the planned tasks, how would you prioritize the remaining tasks on your list?
 
-[👉🏾👉🏾👉🏾 your answer here]
+Yes, I finished all remaining sprint tasks for this week.
 
 ### Which features and user stories would you consider “at risk”? How will you change your plan if those items remain “at risk”?
 
-[👉🏾👉🏾👉🏾 your answer here]
+I don't see any features or user stories to be "at risk" at this time. I anticipate getting everything done.
 
 ### 5. What additional support will you need in upcoming units as you continue to work on your final project?
 
-[👉🏾👉🏾👉🏾 your answer here]
+Again, some grace in project submission deadlines as a solo member of my group would be good. Thankfully, the support team has been very gracious with their extensions, so I think I am good to go.
