@@ -5,6 +5,7 @@ export interface User {
   created_at: string
   avatar_name: string | null
   avatar_image: string | null
+  tasks_completed: number
 }
 
 export interface Category {

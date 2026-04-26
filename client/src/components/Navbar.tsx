@@ -38,10 +38,12 @@ export default function Navbar({ refreshKey }: NavbarProps) {
       </div>
       <div className="flex items-center gap-3">
         <span className="font-bold text-purple-700">{user?.points ?? 0} pts</span>
-        {user?.avatar_image
-          ? <img src={user.avatar_image} alt="avatar" className="w-10 h-10 rounded-full border-2 border-purple-600" />
-          : <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 border-2 border-purple-600" />
-        }
+        <Link to="/profile" className="hover:opacity-80 transition-opacity">
+          {user?.avatar_image
+            ? <img src={user.avatar_image} alt="avatar" className="w-10 h-10 rounded-full border-2 border-purple-600" />
+            : <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 border-2 border-purple-600" />
+          }
+        </Link>
       </div>
     </header>
   )

@@ -6,3 +6,8 @@ export async function getUser(id: number = 1): Promise<User> {
   if (!res.ok) throw new Error('Failed to fetch user')
   return res.json()
 }
+
+export async function resetDatabase(): Promise<void> {
+  const res = await fetch(`${BASE_URL}/api/reset`, { method: 'POST' })
+  if (!res.ok) throw new Error('Failed to reset database')
+}

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
 import AvatarsPage from './pages/AvatarsPage'
 import TaskDetailPage from './pages/TaskDetailPage'
+import ProfilePage from './pages/ProfilePage'
 
 export default function App() {
   const [refreshKey, setRefreshKey] = useState(0)
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/" element={<HomePage onTaskUpdate={refresh} />} />
           <Route path="/avatars" element={<AvatarsPage onAvatarUpdate={refresh} />} />
           <Route path="/tasks/:id" element={<TaskDetailPage onTaskUpdate={refresh} />} />
+          <Route path="/profile" element={<ProfilePage onReset={refresh} />} />
         </Routes>
       </div>
     </BrowserRouter>

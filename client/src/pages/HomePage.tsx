@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getTasks, createTask, updateTask } from '../services/tasks'
-import { getCategories } from '../services/categories'
+import { getCategories, createCategory } from '../services/categories'
 import type { Task, Category } from '../types'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../components/dialog'
 import { Check, Plus, SlidersHorizontal, ChevronDown } from 'lucide-react'
@@ -20,6 +20,10 @@ export default function HomePage({ onTaskUpdate }: HomePageProps) {
   const [filterCompleted, setFilterCompleted] = useState<boolean | undefined>()
   const [sort, setSort] = useState<'due_date' | 'created_at'>('created_at')
   const [showFilters, setShowFilters] = useState(false)
+  const [showNewCategory, setShowNewCategory] = useState(false)
+  const [newCategoryName, setNewCategoryName] = useState('')
+  const [newCategoryColor, setNewCategoryColor] = useState('#6366f1')
+  const [creatingCategory, setCreatingCategory] = useState(false)
 
   const [dialogOpen, setDialogOpen] = useState(false)
   const [newTitle, setNewTitle] = useState('')
@@ -52,6 +56,24 @@ export default function HomePage({ onTaskUpdate }: HomePageProps) {
       onTaskUpdate()
     } catch {
       setError('Failed to update task')
+    }
+  }
+
+  const handleCreateCategory = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!newCategoryName.trim()) return
+    setCreatingCategory(true)
+    try {
+      await createCategory({ name: newCategoryName.trim(), color: newCategoryColor })
+      const updated = await getCategories()
+      setCategories(updated)
+      setNewCategoryName('')
+      setNewCategoryColor('#6366f1')
+      setShowNewCategory(false)
+    } catch {
+      setError('Failed to create category')
+    } finally {
+      setCreatingCategory(false)
     }
   }
 
@@ -170,6 +192,41 @@ export default function HomePage({ onTaskUpdate }: HomePageProps) {
                 {c.name}
               </label>
             ))}
+            {showNewCategory ? (
+              <form onSubmit={handleCreateCategory} className="mt-2 flex flex-col gap-2">
+                <input
+                  autoFocus
+                  value={newCategoryName}
+                  onChange={e => setNewCategoryName(e.target.value)}
+                  placeholder="Category name"
+                  className="px-2 py-1 border-2 border-purple-300 rounded text-sm"
+                />
+                <div className="flex items-center gap-2">
+                  <input
+                    type="color"
+                    value={newCategoryColor}
+                    onChange={e => setNewCategoryColor(e.target.value)}
+                    className="w-8 h-8 rounded border border-gray-300 cursor-pointer"
+                  />
+                  <span className="text-xs text-gray-500">Pick color</span>
+                </div>
+                <div className="flex gap-2">
+                  <button type="submit" disabled={creatingCategory} className="px-3 py-1 bg-purple-500 text-white rounded text-sm font-semibold hover:bg-purple-600 disabled:opacity-50">
+                    {creatingCategory ? 'Saving...' : 'Save'}
+                  </button>
+                  <button type="button" onClick={() => { setShowNewCategory(false); setNewCategoryName(''); setNewCategoryColor('#6366f1') }} className="px-3 py-1 bg-gray-200 rounded text-sm hover:bg-gray-300">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <button
+                onClick={() => setShowNewCategory(true)}
+                className="mt-2 flex items-center gap-1 text-sm text-purple-600 font-semibold hover:text-purple-800"
+              >
+                <Plus className="w-3 h-3" /> New Category
+              </button>
+            )}
           </div>
         </div>
       )}
