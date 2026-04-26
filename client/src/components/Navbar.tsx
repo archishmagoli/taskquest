@@ -1,7 +1,9 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getUser } from '../services/users'
+import { useAuth } from '../context/AuthContext'
 import type { User } from '../types'
+import { LogOut } from 'lucide-react'
 
 interface NavbarProps {
   refreshKey?: number
@@ -9,11 +11,18 @@ interface NavbarProps {
 
 export default function Navbar({ refreshKey }: NavbarProps) {
   const [user, setUser] = useState<User | null>(null)
+  const { logout } = useAuth()
   const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    getUser(1).then(setUser).catch(console.error)
+    getUser().then(setUser).catch(console.error)
   }, [refreshKey])
+
+  const handleLogout = async () => {
+    await logout()
+    navigate('/login')
+  }
 
   const active = 'bg-purple-500 text-white border-purple-600'
   const inactive = 'bg-white text-purple-700 border-purple-300 hover:bg-purple-50'
@@ -44,6 +53,13 @@ export default function Navbar({ refreshKey }: NavbarProps) {
             : <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 border-2 border-purple-600" />
           }
         </Link>
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-1 px-3 py-2 text-gray-500 hover:text-red-500 transition-colors"
+          title="Log out"
+        >
+          <LogOut className="w-4 h-4" />
+        </button>
       </div>
     </header>
   )

@@ -17,7 +17,7 @@ export default function AvatarsPage({ onAvatarUpdate }: AvatarsPageProps) {
 
   const fetchData = async () => {
     try {
-      const [avatarData, userData] = await Promise.all([getAvatars(), getUser(1)])
+      const [avatarData, userData] = await Promise.all([getAvatars(), getUser()])
       setAvatars(avatarData)
       setUser(userData)
     } catch {

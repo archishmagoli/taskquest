@@ -2,9 +2,7 @@ const express = require('express')
 const router = express.Router()
 const pool = require('../config/database')
 
-// GET all avatars with unlock status for a user
 router.get('/', async (req, res) => {
-  const { user_id = 1 } = req.query
   try {
     const { rows } = await pool.query(
       `SELECT avatars.*,
@@ -15,7 +13,7 @@ router.get('/', async (req, res) => {
        FROM avatars
        LEFT JOIN user_avatars ON avatars.id = user_avatars.avatar_id AND user_avatars.user_id = $1
        ORDER BY avatars.point_cost ASC`,
-      [user_id]
+      [req.user.id]
     )
     res.json(rows)
   } catch (err) {
@@ -23,9 +21,9 @@ router.get('/', async (req, res) => {
   }
 })
 
-// POST unlock an avatar (spend points)
 router.post('/unlock', async (req, res) => {
-  const { user_id = 1, avatar_id } = req.body
+  const { avatar_id } = req.body
+  const user_id = req.user.id
   try {
     const userRes = await pool.query('SELECT * FROM users WHERE id = $1', [user_id])
     const avatarRes = await pool.query('SELECT * FROM avatars WHERE id = $1', [avatar_id])
@@ -54,10 +52,9 @@ router.post('/unlock', async (req, res) => {
   }
 })
 
-// PATCH equip an avatar
 router.patch('/equip/:avatar_id', async (req, res) => {
   const { avatar_id } = req.params
-  const { user_id = 1 } = req.body
+  const user_id = req.user.id
   try {
     await pool.query('UPDATE user_avatars SET is_equipped = FALSE WHERE user_id = $1', [user_id])
     const { rows } = await pool.query(

@@ -19,7 +19,7 @@ export default function ProfilePage({ onReset }: ProfilePageProps) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    Promise.all([getUser(1), getAvatars()])
+    Promise.all([getUser(), getAvatars()])
       .then(([u, a]) => { setUser(u); setAvatars(a) })
       .catch(() => setError('Failed to load profile'))
       .finally(() => setLoading(false))

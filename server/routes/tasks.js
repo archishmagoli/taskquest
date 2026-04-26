@@ -2,9 +2,8 @@ const express = require('express')
 const router = express.Router()
 const pool = require('../config/database')
 
-// GET all tasks for a user
 router.get('/', async (req, res) => {
-  const { user_id, category_id, is_completed, sort } = req.query
+  const { category_id, is_completed, sort } = req.query
   try {
     let query = `
       SELECT tasks.*, categories.name AS category_name, categories.color AS category_color
@@ -12,7 +11,7 @@ router.get('/', async (req, res) => {
       LEFT JOIN categories ON tasks.category_id = categories.id
       WHERE tasks.user_id = $1
     `
-    const params = [user_id || 1]
+    const params = [req.user.id]
 
     if (category_id) {
       params.push(category_id)
@@ -32,15 +31,14 @@ router.get('/', async (req, res) => {
   }
 })
 
-// POST create a task
 router.post('/', async (req, res) => {
-  const { user_id = 1, category_id, title, description, due_date, point_value = 10 } = req.body
+  const { category_id, title, description, due_date, point_value = 10 } = req.body
   if (!title) return res.status(400).json({ error: 'Title is required' })
   try {
     const { rows } = await pool.query(
       `INSERT INTO tasks (user_id, category_id, title, description, due_date, point_value)
        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-      [user_id, category_id || null, title, description, due_date || null, point_value]
+      [req.user.id, category_id || null, title, description, due_date || null, point_value]
     )
     res.status(201).json(rows[0])
   } catch (err) {
@@ -48,7 +46,6 @@ router.post('/', async (req, res) => {
   }
 })
 
-// PATCH update a task (including marking complete)
 router.patch('/:id', async (req, res) => {
   const { id } = req.params
   const { title, description, due_date, point_value, is_completed, category_id } = req.body
@@ -76,11 +73,9 @@ router.patch('/:id', async (req, res) => {
       ]
     )
 
-    // Award points when task is marked complete for the first time
     if (!wasCompleted && nowCompleted) {
       await pool.query('UPDATE users SET points = points + $1 WHERE id = $2', [task.point_value, task.user_id])
     }
-    // Deduct points if uncompleted
     if (wasCompleted && !nowCompleted) {
       await pool.query('UPDATE users SET points = GREATEST(points - $1, 0) WHERE id = $2', [task.point_value, task.user_id])
     }
@@ -91,7 +86,6 @@ router.patch('/:id', async (req, res) => {
   }
 })
 
-// DELETE a task
 router.delete('/:id', async (req, res) => {
   const { id } = req.params
   try {
