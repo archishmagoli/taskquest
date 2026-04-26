@@ -64,7 +64,7 @@ Users can filter their task list by category or completion status, and sort by d
 
 Users can reset the app's database back to its default state, restoring the original set of tasks, avatars, and points for a fresh start.
 
-[gif goes here]
+![GIF showing database reset functionality.](./recordings/database_reset.gif)
 
 ## Installation Instructions
 Below are some instructions to set up the project locally.
