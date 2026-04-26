@@ -22,20 +22,6 @@ router.post('/', async (req, res) => {
         ($1, 'Health', '#ef4444')
     `, [user_id])
 
-    // Re-seed default tasks
-    const { rows: cats } = await pool.query(
-      'SELECT id, name FROM categories WHERE user_id = $1',
-      [user_id]
-    )
-    const school = cats.find(c => c.name === 'School')?.id
-    const personal = cats.find(c => c.name === 'Personal')?.id
-
-    await pool.query(`
-      INSERT INTO tasks (user_id, category_id, title, description, due_date, point_value) VALUES
-        ($1, $2, 'Complete WEB103 milestone', 'Finish the final project milestone', NOW() + INTERVAL '3 days', 20),
-        ($1, $3, 'Go for a walk', 'Take a 30 minute walk outside', NOW() + INTERVAL '1 day', 10)
-    `, [user_id, school || null, personal || null])
-
     // Re-equip free avatar
     const { rows: freeAvatars } = await pool.query('SELECT id FROM avatars WHERE point_cost = 0 LIMIT 1')
     if (freeAvatars.length) {

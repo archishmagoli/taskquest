@@ -34,13 +34,13 @@ Users can create, view, edit, and delete tasks. Each task has a title, descripti
 
 Every time a user marks a task as complete, they automatically earn points. Points are tracked on the user's profile and serve as the in-app currency for unlocking avatars.
 
-[gif goes here]
+![GIF showing points earned upon task completion.](./recordings/points_reward_system.gif)
 
 ### Avatar Shop ✅
 
 Users can browse a collection of avatars and spend their earned points to unlock them. Locked avatars display their point cost, and unlocked avatars can be equipped to the user's profile.
 
-[gif goes here]
+![GIF showing avatar purchase and equipment using earned points.](./recordings/avatar_shop.gif)
 
 ### User Profile ✅
 
@@ -58,7 +58,7 @@ Tasks can be assigned to a category (e.g., School, Work, Personal, Health). Cate
 
 Users can filter their task list by category or completion status, and sort by due date or creation date. This makes it easy to focus on what matters most at any given time.
 
-[gif goes here]
+![GIF showing task filtering and sorting functionality.](./recordings/filtering_sorting.gif)
 
 ### Database Reset ✅
 
