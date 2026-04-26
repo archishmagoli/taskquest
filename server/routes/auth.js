@@ -9,7 +9,16 @@ router.get('/github', passport.authenticate('github', { scope: ['user:email'] })
 
 router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: `${CLIENT_URL}/login` }),
-  (req, res) => res.redirect(CLIENT_URL)
+  (req, res) => {
+    req.session.save(err => {
+      if (err) {
+        console.error('Session save error:', err)
+        return res.redirect(`${CLIENT_URL}/login`)
+      }
+      console.log('Session saved, user:', req.user?.id)
+      res.redirect(CLIENT_URL)
+    })
+  }
 )
 
 router.get('/me', async (req, res) => {
