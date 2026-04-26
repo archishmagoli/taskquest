@@ -81,7 +81,7 @@ export default function AvatarsPage({ onAvatarUpdate }: AvatarsPageProps) {
 }`}
           >
             <div className="relative w-full aspect-square mb-3 rounded-lg overflow-hidden bg-purple-50 border-2 border-purple-200 flex items-center justify-center">
-              <img src={avatar.image_url} alt={avatar.name} className={`w-20 h-20 ${!avatar.is_unlocked ? 'grayscale' : ''}`} />
+              <img src={avatar.image_url} alt={avatar.name} className={`w-full h-full object-contain ${!avatar.is_unlocked ? 'grayscale' : ''}`} />
               {!avatar.is_unlocked && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
                   <Lock className="w-10 h-10 text-white drop-shadow-lg" />

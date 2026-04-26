@@ -66,11 +66,11 @@ const seedData = `
     (1, 3, 'Go for a walk', 'Take a 30 minute walk outside', NOW() + INTERVAL '1 day', 10);
 
   INSERT INTO avatars (name, image_url, point_cost, description) VALUES
-    ('Whiskers', 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Whiskers', 0, 'Your default companion — always ready to help!'),
-    ('Buddy', 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Buddy', 50, 'A loyal friend earned through hard work.'),
-    ('Hoppy', 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Hoppy', 100, 'Quick and energetic — just like you!'),
-    ('Foxy', 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Foxy', 150, 'Clever and cunning. A rare unlock.'),
-    ('Cosmo', 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Cosmo', 250, 'Out of this world. For the truly dedicated.');
+    ('Whiskers', 'https://robohash.org/Whiskers?set=set4', 0, 'Your default companion — always ready to help!'),
+    ('Buddy', 'https://robohash.org/Buddy?set=set4', 50, 'A loyal friend earned through hard work.'),
+    ('Hoppy', 'https://robohash.org/Hoppy?set=set4', 100, 'Quick and energetic — just like you!'),
+    ('Foxy', 'https://robohash.org/Foxy?set=set4', 150, 'Clever and cunning. A rare unlock.'),
+    ('Cosmo', 'https://robohash.org/Cosmo?set=set4', 250, 'Out of this world. For the truly dedicated.');
 
   INSERT INTO user_avatars (user_id, avatar_id, is_equipped) VALUES (1, 1, TRUE);
 `
