@@ -31,9 +31,7 @@ export default function Navbar({ refreshKey }: NavbarProps) {
     <header className="flex items-center justify-between px-8 py-4 border-b-2 border-purple-300 bg-white">
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center rounded">
-            <span className="text-white font-bold text-lg">TQ</span>
-          </div>
+          <img src="/icon.png" alt="TaskQuest" className="w-10 h-10 rounded" />
           <span className="text-xl font-bold text-purple-800">TaskQuest</span>
         </div>
         <nav className="flex gap-2">
@@ -55,7 +53,7 @@ export default function Navbar({ refreshKey }: NavbarProps) {
         </Link>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-1 px-3 py-2 text-gray-500 hover:text-red-500 transition-colors"
+          className="flex items-center gap-1 px-3 py-2 text-gray-500 hover:text-red-500 transition-colors cursor-pointer"
           title="Log out"
         >
           <LogOut className="w-4 h-4" />
