@@ -123,7 +123,7 @@ export default function TaskDetailPage({ onTaskUpdate }: TaskDetailPageProps) {
               )}
               {task.due_date && (
                 <span className="px-4 py-2 bg-white border-2 border-gray-300 rounded text-gray-600">
-                  Due: {new Date(task.due_date).toLocaleDateString()}
+                  Due: {new Date(task.due_date.slice(0, 10) + 'T12:00:00').toLocaleDateString()}
                 </span>
               )}
             </div>

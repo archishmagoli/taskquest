@@ -264,7 +264,7 @@ export default function HomePage({ onTaskUpdate }: HomePageProps) {
                     {task.category_name}
                   </span>
                 )}
-                {task.due_date && <span className="text-xs text-gray-400">Due {new Date(task.due_date).toLocaleDateString()}</span>}
+                {task.due_date && <span className="text-xs text-gray-400">Due {new Date(task.due_date.slice(0, 10) + 'T12:00:00').toLocaleDateString()}</span>}
               </div>
             </div>
           ))}

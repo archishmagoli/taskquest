@@ -4,7 +4,7 @@ CodePath WEB103 Final Project
 
 Designed and developed by: Archie Goli
 
-🔗 Link to deployed app:
+🔗 Link to deployed app: https://taskquest-dun.vercel.app/
 
 ## About
 
@@ -46,7 +46,7 @@ Users can browse a collection of avatars and spend their earned points to unlock
 
 A dedicated profile page displays the user's current avatar, total points earned, number of tasks completed, and all avatars they have unlocked so far.
 
-[gif goes here]
+![GIF showing user profile in TaskQuest application.](https://i.imgur.com/kwO0FPR.gif)
 
 ### Task Categories
 
@@ -67,5 +67,54 @@ Users can reset the app's database back to its default state, restoring the orig
 [gif goes here]
 
 ## Installation Instructions
+Below are some instructions to set up the project locally.
 
-[instructions go here]
+### Prerequisites
+- Node.js (v18+)
+- A PostgreSQL database (e.g. via [Render](https://render.com))
+- A GitHub OAuth App ([create one here](https://github.com/settings/developers))
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/archishmagoli/taskquest.git
+cd taskquest
+```
+
+### 2. Set up the backend
+```bash
+cd server
+npm install
+```
+
+Create a `.env` file in the `server/` directory:
+```
+PGHOST=your_db_host
+PGUSER=your_db_user
+PGPASSWORD=your_db_password
+PGDATABASE=your_db_name
+PGPORT=5432
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+GITHUB_CALLBACK_URL=http://localhost:3000/auth/github/callback
+SESSION_SECRET=any_long_random_string
+CLIENT_URL=http://localhost:5173
+```
+
+Seed the database:
+```bash
+npm run seed
+```
+
+Start the backend:
+```bash
+npm run dev
+```
+
+### 3. Set up the frontend
+```bash
+cd ../client
+npm install
+npm run dev
+```
+
+The app will be available at `http://localhost:5173`.
