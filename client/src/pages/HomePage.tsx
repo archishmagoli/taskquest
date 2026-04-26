@@ -239,7 +239,13 @@ export default function HomePage({ onTaskUpdate }: HomePageProps) {
             <div
               key={task.id}
               onClick={() => navigate(`/tasks/${task.id}`)}
-              className={`border-2 p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative ${task.is_completed ? 'bg-gray-100 border-gray-300' : 'bg-white border-purple-300'}`}
+              className="border-2 p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative"
+              style={task.is_completed
+                ? { backgroundColor: '#f3f4f6', borderColor: '#d1d5db' }
+                : task.category_color
+                  ? { backgroundColor: task.category_color + '22', borderColor: task.category_color }
+                  : { backgroundColor: '#ffffff', borderColor: '#d8b4fe' }
+              }
             >
               <button
                 onClick={e => handleToggleComplete(task, e)}
