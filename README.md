@@ -28,7 +28,7 @@ I always have a hard time keeping track of tasks for school and work. Most to-do
 
 Users can create, view, edit, and delete tasks. Each task has a title, description, due date, category, and completion status — giving full control over what needs to get done.
 
-[gif goes here]
+![GIF demoing task management actions.](./recordings/task_management.gif)
 
 ### Points Reward System ✅
 
@@ -52,7 +52,7 @@ A dedicated profile page displays the user's current avatar, total points earned
 
 Tasks can be assigned to a category (e.g., School, Work, Personal, Health). Categories help users organize their workload and provide a visual way to group related tasks.
 
-[GIF showing task created under new created category.](./recordings/task_category.gif)
+![GIF showing task created under new created category.](./recordings/task_category.gif)
 
 ### Task Filtering and Sorting ✅
 
@@ -62,7 +62,7 @@ Users can filter their task list by category or completion status, and sort by d
 
 ### Database Reset ✅
 
-Users can reset the app's database back to its default state, restoring the original set of tasks, avatars, and user data for a fresh start.
+Users can reset the app's database back to its default state, restoring the original set of tasks, avatars, and points for a fresh start.
 
 [gif goes here]
 

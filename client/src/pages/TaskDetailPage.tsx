@@ -59,14 +59,16 @@ export default function TaskDetailPage({ onTaskUpdate }: TaskDetailPageProps) {
     if (!task) return
     setSaving(true)
     try {
-      const updated = await updateTask(task.id, {
+      await updateTask(task.id, {
         title: editTitle,
         description: editDescription,
         due_date: editDueDate || undefined,
         point_value: editPoints,
         category_id: editCategoryId ?? null,
       })
-      setTask(updated)
+      const tasks = await getTasks()
+      const refreshed = tasks.find(t => t.id === task.id)
+      if (refreshed) setTask(refreshed)
       setEditing(false)
     } catch {
       setError('Failed to save task')

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getUser, resetDatabase } from '../services/users'
 import { getAvatars } from '../services/avatars'
+import { useAuth } from '../context/AuthContext'
 import type { User, Avatar } from '../types'
 import { Trophy, CheckSquare, Star, RotateCcw } from 'lucide-react'
 
@@ -16,6 +17,7 @@ export default function ProfilePage({ onReset }: ProfilePageProps) {
   const [error, setError] = useState<string | null>(null)
   const [confirmReset, setConfirmReset] = useState(false)
   const [resetting, setResetting] = useState(false)
+  const { logout } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
